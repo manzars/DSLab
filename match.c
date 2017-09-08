@@ -1,12 +1,18 @@
 #include<stdio.h>
+#include<ctype.h>
 #define max 30
-char stack[max];
-int top=-1;
-void push(char x){
-	stack[++top]=x;
+//char stack[max];
+//int top=-1;
+typedef struct match{
+	char stack[max];
+	int top=-1;
+}
+void push(struct match x){
+	match.top++;
+	match.stack[match.top]=x;
 }
 void pop(){
-	top--;
+	match.top--;
 }
 int main(){
 	printf("Enter the Expression\n");
@@ -18,26 +24,26 @@ int main(){
 		push(*c);
 		}
 		else if(*c==')'){
-			if(stack[top]=='(')
+			if(match.stack[match.top]=='(')
 			pop();
 			else
 			break;
 		}
 		else if(*c=='}'){
-			if(stack[top]=='{')
+			if(match.stack[match.top]=='{')
 			pop();
 			else
 			break;
 		}
 		else if(*c==']'){
-			if(stack[top]=='[')
+			if(match.stack[match.top]=='[')
 			pop();
 			else
 			break;
 		}
 		c++;
 	}
-	if(top==-1)
+	if(match.top==-1)
 	printf("expression is balance");
 	else
 	printf("Expression is not balance");
